@@ -217,8 +217,8 @@ abstract class Water extends SourceWater
 
     public function __call(string $method, array $parameters)
     {
-        if (isset($this->loadedResources[$resourceName = Str::snake($method)])) {
-            return $this->loadedResources[$resourceName];
+        if (isset($this->loadedMolecules[$resourceName = Str::snake($method)])) {
+            return $this->loadedMolecules[$resourceName];
         }
 
         static::throwBadMethodCallException($method);
