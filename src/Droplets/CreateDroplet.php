@@ -2,23 +2,14 @@
 
 namespace Ingor\Droplets;
 
-use Illuminate\Routing\Router;
+use Ingor\Actions\StoreResource;
 use Ingor\Droplet;
-use Ingor\Pages\TablePage;
+use Ingor\Pages\MyPage;
 
 class CreateDroplet extends Droplet
 {
-    public $methods = [
-        'create',
+    protected $molecules = [
+        'create' => ['get',  '/create', MyPage::class],
+        'store' =>  ['post', '/store',  StoreResource::class],
     ];
-
-    public function create()
-    {
-        // return $this->page(TablePage::class);
-    }
-
-    public function routes(Router $router)
-    {
-        // $router->get('/', $this->water->action('index'));
-    }
 }

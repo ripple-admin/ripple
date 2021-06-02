@@ -2,7 +2,6 @@
 
 namespace Ingor\Droplets;
 
-use Illuminate\Routing\Router;
 use Ingor\Droplet;
 use Ingor\Pages\DetailPage;
 
@@ -19,8 +18,8 @@ class ShowDroplet extends Droplet
         return $this->page(DetailPage::class);
     }
 
-    public function routes(Router $router)
+    public function routes($router)
     {
-        $router->get('/{id}', $this->water->action('show'));
+        $router->get('/{id}', [static::class, 'show']);
     }
 }

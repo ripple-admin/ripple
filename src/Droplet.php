@@ -3,49 +3,45 @@
 namespace Ingor;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use Ingor\Concerns\HasActions;
-use Ingor\Concerns\HasPages;
 use Ingor\Concerns\HasWater;
+use Ingor\Concerns\Molecules;
 use Ingor\Contracts\Field\Displayable;
 use Ingor\Fields\Concerns\FieldsValues;
 
-abstract class Droplet
+abstract class Droplet extends SourceWater
 {
     use Macroable;
     use HasWater;
-    use HasPages;
-    use HasActions;
+    use Molecules;
     use FieldsValues;
-
-    /**
-     * Allows export methods of droplets.
-     *
-     * @var string[]
-     */
-    public $methods = [];
 
     /** @var \Illuminate\Database\Eloquent\Model */
     protected $model;
     protected $modelKeyName = 'id';
 
     protected $perPage = 10;
-    protected $pagination = false;
+    protected $pagination = true;
 
     public function __construct(Water $water)
     {
         $this->water = $water;
+
+        $this->bootTraits();
+        $this->boot();
     }
 
     /**
      * Define the routes of the droplet.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void
      */
-    abstract protected function routes(Router $router);
+    public function routes($router)
+    {
+        //
+    }
 
     /**
      * Set & get the eloquent model.

@@ -2,23 +2,28 @@
 
 namespace Ingor;
 
-use Illuminate\Routing\Router;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Macroable;
-use ReflectionClass;
-use ReflectionMethod;
-use Ingor\Concerns\HasActions;
-use Ingor\Concerns\HasPages;
+use Ingor\Concerns\Molecules;
 use Ingor\Droplets\CreateDroplet;
 use Ingor\Droplets\DestroyDroplet;
 use Ingor\Droplets\EditDroplet;
 use Ingor\Droplets\IndexDroplet;
 use Ingor\Droplets\ShowDroplet;
 
-abstract class Water
+abstract class Water extends SourceWater
 {
     use Macroable;
-    use HasPages;
-    use HasActions;
+    use Molecules;
+    use ForwardsCalls;
+
+    /**
+     * The route prefix by Water.
+     *
+     * @var string|null
+     */
+    protected $prefix;
 
     /**
      * The original model class.
@@ -35,39 +40,39 @@ abstract class Water
     protected $modelInstance;
 
     /**
-     * The droplets instance.
+     * Define the droplets of water.
      *
-     * @var string[]|\Ingor\Droplet[]
+     * @var array
      */
     protected $droplets = [
-        'index' => IndexDroplet::class,
-        'show' => ShowDroplet::class,
-        // 'create' => CreateDroplet::class,
-        // 'edit' => EditDroplet::class,
-        // 'destroy' => DestroyDroplet::class,
+        IndexDroplet::class,
+        CreateDroplet::class,
+        // ShowDroplet::class,
+        // EditDroplet::class,
+        // DestroyDroplet::class,
     ];
+
+    /**
+     * The droplets instance.
+     *
+     * @var array
+     */
+    protected $loadedDroplets = [];
 
     public function __construct()
     {
-        $this->bootDroplets();
+        $this->bootTraits();
         $this->boot();
     }
 
     /**
-     * Define the water model fields.
-     *
-     * @return \Ingor\Field[]
-     */
-    abstract public function fields(): array;
-
-    /**
-     * Bootstrap water model.
+     * Bootstrap the water model.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        $this->bootDroplets();
     }
 
     /**
@@ -85,20 +90,25 @@ abstract class Water
     }
 
     /**
+     * Define the water model fields.
+     *
+     * @return array|\Ingor\Field[]
+     */
+    abstract public function fields(): array;
+
+    /**
      * Bootstrap all droplets instance.
      *
      * @return void
      */
     public function bootDroplets()
     {
-        foreach ($this->droplets as $name => $droplet) {
+        foreach ($this->droplets as $className) {
             /** @var \Ingor\Droplet $droplet */
-            $droplet = new $droplet($this);
+            $droplet = new $className($this);
             $droplet->fields($this->fields());
 
-            $this->addDroplet($name, $droplet);
-
-            static::mixinDroplet($droplet);
+            $this->addDroplet($droplet);
         }
     }
 
@@ -126,88 +136,91 @@ abstract class Water
     /**
      * Add a new droplet instance.
      *
-     * @param  string  $name
      * @param  \Ingor\Droplet  $droplet
      * @return $this
      */
-    public function addDroplet(string $name, Droplet $droplet)
+    public function addDroplet(Droplet $droplet)
     {
-        $this->droplets[$name] = $droplet;
+        $this->loadedDroplets[get_class($droplet)] = $droplet;
+        $this->mergeMolecules($droplet);
 
         return $this;
     }
 
     /**
-     * Mix droplet instance into the water model.
+     * Get the water route prefix.
      *
-     * @param  \Ingor\Droplet  $droplet
-     * @param  bool  $replace
-     * @return void
+     * @return string
      */
-    public static function mixinDroplet(Droplet $droplet, $replace = true)
+    protected function prefix()
     {
-        $methods = array_filter((new ReflectionClass($droplet))->getMethods(
-            ReflectionMethod::IS_PUBLIC
-        ), function (ReflectionMethod $method) use ($droplet) {
-            return in_array($method->name, $droplet->methods);
-        });
-
-        foreach ($methods as $method) {
-            if ($replace || ! static::hasMacro($method->name)) {
-                static::macro($method->name, fn (...$parameters) =>
-                    $method->invoke($droplet, ...$parameters)
-                );
-            }
+        if ($this->prefix) {
+            return $this->prefix;
         }
+
+        return Str::snake(Str::pluralStudly(class_basename(static::class)));
     }
 
     /**
      * Register the water routes.
      *
-     * @param  \Illuminate\Routing\Router  $router
-     * @param  string  $routePrefix
+     * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void
      */
-    public function registerRoute(Router $router, string $routePrefix)
+    public function registerRoutes($router)
     {
-        $router->prefix($routePrefix)->group(function (Router $router) {
-            $this->registerDropletsRoute($router);
+        $router->prefix($this->prefix())->group(function ($router) {
+            $this->registerMoleculesRoutes($router);
+            $this->registerDropletsRoutes($router);
             $this->routes($router);
         });
     }
 
     /**
-     * Register the droplets routes.
+     * Register the molecules routes.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void
      */
-    protected function registerDropletsRoute(Router $router)
+    protected function registerMoleculesRoutes($router)
     {
-        foreach ($this->droplets as $droplet) {
+        /** @var \Ingor\Contracts\Molecule $molecule */
+        foreach ($this->loadedMolecules as $name => $molecule) {
+            $molecule->routes($router);
+        }
+    }
+
+    /**
+     * Register the droplets routes.
+     *
+     * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
+     * @return void
+     */
+    protected function registerDropletsRoutes($router)
+    {
+        /** @var \Ingor\Droplet $droplet */
+        foreach ($this->loadedDroplets as $className => $droplet) {
             $droplet->routes($router);
         }
     }
 
     /**
-     * Get the route action.
-     *
-     * @param  string  $action
-     * @return string[]
-     */
-    public function action(string $action): array
-    {
-        return [static::class, $action];
-    }
-
-    /**
      * Define the routes of the water model.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void
      */
-    protected function routes(Router $router)
+    protected function routes($router)
     {
         //
+    }
+
+    public function __call(string $method, array $parameters)
+    {
+        if (isset($this->loadedResources[$resourceName = Str::snake($method)])) {
+            return $this->loadedResources[$resourceName];
+        }
+
+        static::throwBadMethodCallException($method);
     }
 }

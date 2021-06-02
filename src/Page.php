@@ -2,20 +2,22 @@
 
 namespace Ingor;
 
-use Illuminate\Routing\Router;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Macroable;
 use Inertia\Inertia;
-use Ingor\Components\AbstractComponent;
+use Ingor\AbstractComponent;
 use Ingor\Concerns\HasDroplet;
+use Ingor\Concerns\HasRoute;
 use Ingor\Concerns\HasWater;
-use Ingor\Contracts\Routable;
-use InvalidArgumentException;
+use Ingor\Contracts\Molecule;
 
-abstract class Page extends AbstractComponent implements Routable
+abstract class Page extends AbstractComponent implements Molecule, Responsable
 {
     use Macroable;
     use HasWater;
     use HasDroplet;
+    use HasRoute;
 
     /**
      * The page title.
@@ -25,14 +27,14 @@ abstract class Page extends AbstractComponent implements Routable
     protected $title;
 
     /**
-     * Bootstrap the page instance.
+     * Handle the page rendering.
      *
      * @return void
      */
-    public function boot()
-    {
-        //
-    }
+    // public function handle()
+    // {
+    //     //
+    // }
 
     /**
      * Define the page title.
@@ -75,7 +77,7 @@ abstract class Page extends AbstractComponent implements Routable
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    abstract public function registerRoute(Router $router): void;
+    // abstract public function registerRoute(Router $router): void;
 
     /**
      * Get this page fields.
@@ -87,44 +89,40 @@ abstract class Page extends AbstractComponent implements Routable
         return $this->droplet->getFields();
     }
 
-
     /**
-     * 尚未確定
-     *
      * Add the page row content.
      *
      * @param  array|\Ingor\Component  $content
      * @return void
      */
-    public function row($content)
-    {
-        if (is_array($content)) {
-            //
-        } elseif ($content instanceof Component) {
-            //
-        } else {
-            throw new InvalidArgumentException(
-                sprintf('The argument $content must be an instance of %s or array.', Component::class)
-            );
-        }
+    // public function row($content)
+    // {
+    //     if (is_array($content)) {
+    //         //
+    //     } elseif ($content instanceof Component) {
+    //         //
+    //     } else {
+    //         throw new InvalidArgumentException(
+    //             sprintf('The argument $content must be an instance of %s or array.', Component::class)
+    //         );
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
-     * 尚未確定
-     *
      * Add the page content.
      *
      * @param  \Ingor\Component  $content
      * @return void
      */
-    public function content(Component $content)
-    {
-        //
+    // public function content(Component $content)
+    // {
+    //     //
 
-        return $this;
-    }
+    //     return $this;
+    // }
+
     /**
      * Create an HTTP response that represents the object.
      *
@@ -133,6 +131,10 @@ abstract class Page extends AbstractComponent implements Routable
      */
     public function toResponse($request)
     {
+        if (method_exists($this, 'handle')) {
+            App::call([$this, 'handle']);
+        }
+
         return Inertia::render($this->name(), $this->props())
             ->toResponse($request);
     }

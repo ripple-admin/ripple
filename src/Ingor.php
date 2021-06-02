@@ -3,9 +3,13 @@
 namespace Ingor;
 
 use Illuminate\Support\Facades\Route;
+use InvalidArgumentException;
 
 class Ingor
 {
+    /** @var \Ingor\Water[] */
+    public static $waters = [];
+
     /** @var \Ingor\Asset[] */
     public static $css = [];
 
@@ -18,27 +22,68 @@ class Ingor
     public static $pluginRoutesPath = [];
 
     /**
-     * Define the "ingor" routes for the application.
+     * Add a Water class into Ingor.
+     *
+     * @param  string  $class
+     * @return static
+     */
+    public static function water(string $class)
+    {
+        $water = app($class);
+
+        if (! $water instanceof Water) {
+            throw new InvalidArgumentException(
+                sprintf('The argument $class must be an instance of %s.', Water::class)
+            );
+        }
+
+        static::$waters[] = $water;
+
+        return new static;
+    }
+
+    /**
+     * Register the "ingor" routes for the application.
      *
      * @return void
      */
     public static function routes()
     {
-        Route::namespace('\Ingor\Http\Controllers')
-            ->group(__DIR__.'/../routes/ingor.php');
+        Route::group([], __DIR__.'/../routes/ingor.php');
+    }
 
+    /**
+     * Register the Water routes.
+     *
+     * @return void
+     */
+    public static function waterRoutes()
+    {
+        /** @var \Ingor\Water $water */
+        foreach (static::$waters as $water) {
+            $water->registerRoutes(app('router'));
+        }
+    }
+
+    /**
+     * Register the Ingor plugins routes.
+     *
+     * @return void
+     */
+    public static function pluginRoutes()
+    {
         foreach (static::$pluginRoutesPath as $path) {
             Route::group([], $path);
         }
     }
 
     /**
-     * Register the plugin routes file path.
+     * Add the plugin routes file path.
      *
      * @param  string  $path
      * @return static
      */
-    public static function pluginRoutes(string $path)
+    public static function addPluginRoutes(string $path)
     {
         static::$pluginRoutesPath[] = $path;
 

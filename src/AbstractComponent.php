@@ -1,6 +1,6 @@
 <?php
 
-namespace Ingor\Components;
+namespace Ingor;
 
 use Illuminate\Support\Traits\Macroable;
 use Ingor\Concerns\RelativeClassName;

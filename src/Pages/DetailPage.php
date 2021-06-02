@@ -21,7 +21,7 @@ class DetailPage extends Page
         return $this->droplet->buildModelData();
     }
 
-    public function pageProps()
+    protected function pageProps(): array
     {
         return [
             'detail' => Detail::make()

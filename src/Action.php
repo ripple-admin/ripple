@@ -2,32 +2,35 @@
 
 namespace Ingor;
 
-use Illuminate\Http\Request;
-use Illuminate\Routing\Router;
+use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Macroable;
 use Ingor\Concerns\HasDroplet;
+use Ingor\Concerns\HasRoute;
 use Ingor\Concerns\HasWater;
-use Ingor\Contracts\Routable;
+use Ingor\Contracts\Molecule;
+use Lorisleiva\Actions\Concerns\AsAction;
 
-abstract class Action implements Routable
+abstract class Action implements Molecule, Responsable
 {
     use Macroable;
+    use AsAction;
     use HasWater;
     use HasDroplet;
+    use HasRoute;
 
     /**
-     * Handle the action.
+     * Create a new redirect response to the current request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return void|\Symfony\Component\HttpFoundation\Response|\Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    abstract public function handle(Request $request);
+    public function toResponse($request)
+    {
+        if (method_exists($this, 'handle')) {
+            $response = App::call([$this, 'handle']);
+        }
 
-    /**
-     * Register the current class route.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    abstract public function registerRoute(Router $router): void;
+        return $response ?? back();
+    }
 }

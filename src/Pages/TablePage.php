@@ -21,7 +21,7 @@ class TablePage extends Page
         return $this->droplet->buildModelData();
     }
 
-    public function pageProps()
+    protected function pageProps(): array
     {
         return [
             'table' => Table::make()

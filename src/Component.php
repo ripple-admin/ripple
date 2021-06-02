@@ -2,9 +2,9 @@
 
 namespace Ingor;
 
-use JsonSerializable;
-use Ingor\Components\AbstractComponent;
+use Ingor\AbstractComponent;
 use Ingor\Contracts\InertiaRenderable;
+use JsonSerializable;
 
 abstract class Component extends AbstractComponent implements JsonSerializable, InertiaRenderable
 {
