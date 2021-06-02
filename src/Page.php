@@ -102,9 +102,9 @@ abstract class Page extends AbstractComponent implements Molecule, Responsable
     //     } elseif ($content instanceof Component) {
     //         //
     //     } else {
-    //         throw new InvalidArgumentException(
-    //             sprintf('The argument $content must be an instance of %s or array.', Component::class)
-    //         );
+    //         throw new InvalidArgumentException(sprintf(
+    //             'The argument $content must be an instance of %s or array.', Component::class
+    //         ));
     //     }
 
     //     return $this;

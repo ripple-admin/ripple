@@ -3,6 +3,8 @@
 namespace Ingor\Concerns;
 
 use Illuminate\Support\Str;
+use Ingor\Water;
+use InvalidArgumentException;
 
 trait HasRoute
 {
@@ -34,7 +36,7 @@ trait HasRoute
     protected function routeAction(): array
     {
         return [
-            get_class($this->water ?? $this->droplet->water()),
+            get_class($this->water()),
             Str::camel($this->routeName),
         ];
     }
@@ -49,6 +51,15 @@ trait HasRoute
      */
     public function setRoute(string $method, string $path, ?string $name = null)
     {
+        if (is_string($name) && method_exists($this->water(), Str::camel($name))) {
+            throw new InvalidArgumentException(sprintf(
+                join('', [
+                    'The route name "%s" conflicts cannot used, cannot be used. ',
+                    'Because has been defined method "%s()" in %s::class.',
+                ]), $name, $name, Water::class
+            ));
+        }
+
         $this->method = $method;
         $this->path = $path;
         $this->routeName = $name;

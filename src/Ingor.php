@@ -32,9 +32,9 @@ class Ingor
         $water = app($class);
 
         if (! $water instanceof Water) {
-            throw new InvalidArgumentException(
-                sprintf('The argument $class must be an instance of %s.', Water::class)
-            );
+            throw new InvalidArgumentException(sprintf(
+                'The argument $class must be an instance of %s.', Water::class
+            ));
         }
 
         static::$waters[] = $water;
