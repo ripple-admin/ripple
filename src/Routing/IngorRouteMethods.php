@@ -1,17 +1,16 @@
 <?php
 
-namespace RippleAdmin\Routing;
+namespace Ingor\Routing;
 
-use RippleAdmin\Droplet;
-use RippleAdmin\Water;
+use Ingor\Water;
 
-class RippleRouteMethods
+class IngorRouteMethods
 {
     /**
      * Register the routes of water model.
      *
      * @param  string  $prefix
-     * @param  string|\RippleAdmin\Water  $water
+     * @param  string|\Ingor\Water  $water
      * @return callable
      */
     public function water()

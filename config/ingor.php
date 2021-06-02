@@ -4,22 +4,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Name
+    | Ingor Name
     |--------------------------------------------------------------------------
     |
-    | This is the Ripple Admin main title.
+    | This is the Ingor main title.
     |
     */
 
-    'name' => 'Ripple Admin',
+    'name' => 'Ingor',
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Domain
+    | Ingor Domain
     |--------------------------------------------------------------------------
     |
-    | This is the subdomain where Ripple Admin will be accessible from. If this
-    | setting is null, Ripple Admin will reside under the same domain as the
+    | This is the subdomain where Ingor will be accessible from. If this
+    | setting is null, Ingor will reside under the same domain as the
     | application. Otherwise, this value will serve as the subdomain.
     |
     */
@@ -28,10 +28,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Prefix
+    | Ingor Prefix
     |--------------------------------------------------------------------------
     |
-    | This is the URI prefix where Ripple Admin will be accessible from. Feel
+    | This is the URI prefix where Ingor will be accessible from. Feel
     | free to change this prefix to anything you like. Note that the URI will
     | not affect the paths of its internal API that aren't exposed to users.
     |
@@ -41,10 +41,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Controller Namespace
+    | Ingor Controller Namespace
     |--------------------------------------------------------------------------
     |
-    | This is the controller namespace of Ripple Admin.
+    | This is the controller namespace of Ingor.
     |
     */
 
@@ -52,10 +52,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Route Middleware
+    | Ingor Route Middleware
     |--------------------------------------------------------------------------
     |
-    | These middleware will get attached onto each Ripple Admin route, giving
+    | These middleware will get attached onto each Ingor route, giving
     | you the chance to add your own middleware to this list or change any of
     | the existing middleware. Or, you can simply stick with this list.
     |
@@ -63,33 +63,33 @@ return [
 
     'middleware' => [
         'web',
-        \RippleAdmin\Http\Middleware\InertiaRequest::class,
+        \Ingor\Http\Middleware\InertiaRequest::class,
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Ripple Admin Authentication
+    | Ingor Authentication
     |--------------------------------------------------------------------------
     |
-    | This is define the Ripple Admin authentication config. More reference
+    | This is define the Ingor authentication config. More reference
     | the Laravel auth config.
     |
     */
 
     'auth' => [
-        'guard' => 'ripple',
+        'guard' => 'ingor',
 
         'guards' => [
-            'ripple' => [
+            'ingor' => [
                 'driver' => 'session',
-                'provider' => 'ripple_users',
+                'provider' => 'ingor_users',
             ],
         ],
 
         'providers' => [
-            'ripple_users' => [
+            'ingor_users' => [
                 'driver' => 'eloquent',
-                'model' => \RippleAdmin\Models\User::class,
+                'model' => \Ingor\Models\User::class,
             ],
         ],
     ],

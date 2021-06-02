@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Http\Middleware;
+namespace Ingor\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Config;
@@ -18,17 +18,17 @@ class InertiaRequest
      */
     public function handle($request, Closure $next)
     {
-        Inertia::setRootView('ripple-admin::layout');
+        Inertia::setRootView('ingor-admin::layout');
 
         Inertia::share([
             'app' => function () {
                 return [
-                    'name' => Config::get('ripple.name'),
+                    'name' => Config::get('ingor.name'),
                 ];
             },
             'url' => function () {
                 return [
-                    'prefix' => Config::get('ripple.prefix'),
+                    'prefix' => Config::get('ingor.prefix'),
                 ];
             },
             'errors' => function () {

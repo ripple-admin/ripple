@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Contracts;
+namespace Ingor\Contracts;
 
 use Illuminate\Contracts\Support\Arrayable;
 

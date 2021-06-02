@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 class Asset
 {

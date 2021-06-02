@@ -1,4 +1,4 @@
-# Laravel RippleAdmin
+# Ingor
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -6,15 +6,15 @@
 [![Style CI Build Status][ico-style-ci]][link-style-ci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Quick and easy to customize admin panel for Laravel.
+Quick and easy to customize admin panel for Laravel with Inertia.js & Vue.js.
 
-[ico-version]: https://img.shields.io/packagist/v/rippleadmin/ripple?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/ingor/ingor?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square
-[ico-ci]: https://img.shields.io/travis/rippleadmin/ripple?style=flat-square
+[ico-ci]: https://img.shields.io/travis/ingorlabs/ingor?style=flat-square
 [ico-style-ci]: https://github.styleci.io/repos/190876726/shield?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/rippleadmin/ripple?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/ingor/ingor?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/rippleadmin/ripple
-[link-ci]: https://travis-ci.org/rippleadmin/ripple
+[link-packagist]: https://packagist.org/packages/ingor/ingor
+[link-ci]: https://travis-ci.com/ingorlabs/ingor
 [link-style-ci]: https://github.styleci.io/repos/190876726
-[link-downloads]: https://packagist.org/packages/rippleadmin/ripple
+[link-downloads]: https://packagist.org/packages/ingor/ingor

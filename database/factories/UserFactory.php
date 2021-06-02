@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
-use RippleAdmin\Models\User;
+use Ingor\Models\User;
 
 $factory->define(User::class, function (Faker $faker) {
     return [

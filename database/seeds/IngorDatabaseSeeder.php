@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RippleAdminDatabaseSeeder extends Seeder
+class IngorDatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -11,6 +11,6 @@ class RippleAdminDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RippleUserSeeder::class);
+        $this->call(IngorUserSeeder::class);
     }
 }

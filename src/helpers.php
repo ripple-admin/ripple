@@ -15,37 +15,37 @@ if (! function_exists('class_basename')) {
     }
 }
 
-if (! function_exists('ripple_url')) {
+if (! function_exists('ingor_url')) {
     /**
-     * Generate a url for the Ripple Admin.
+     * Generate a url for the Ingor.
      *
      * @param  string  $path
      * @param  mixed  $parameters
      * @param  bool|null  $secure
      * @return string
      */
-    function ripple_url($path, $parameters = [], $secure = null)
+    function ingor_url($path, $parameters = [], $secure = null)
     {
-        return url(config('ripple.prefix').'/'.ltrim($path, '/'), $parameters, $secure);
+        return url(config('ingor.prefix').'/'.ltrim($path, '/'), $parameters, $secure);
     }
 }
 
-if (! function_exists('ripple_redirect')) {
+if (! function_exists('ingor_redirect')) {
     /**
-     * Get an instance of the redirector for Ripple Admin.
+     * Get an instance of the redirector for Ingor.
      *
      * @param  string|null  $to
      * @param  int  $status
      * @param  array  $headers
      * @param  bool|null  $secure
-     * @return \RippleAdmin\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     * @return \Ingor\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
-    function ripple_redirect($to = null, $status = 302, $headers = [], $secure = null)
+    function ingor_redirect($to = null, $status = 302, $headers = [], $secure = null)
     {
         if (is_null($to)) {
-            return app('ripple.redirect');
+            return app('ingor.redirect');
         }
 
-        return app('ripple.redirect')->to($to, $status, $headers, $secure);
+        return app('ingor.redirect')->to($to, $status, $headers, $secure);
     }
 }

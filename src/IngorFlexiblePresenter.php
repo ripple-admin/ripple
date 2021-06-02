@@ -1,10 +1,10 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use AdditionApps\FlexiblePresenter\FlexiblePresenter;
 
-class RippleFlexiblePresenter extends FlexiblePresenter
+class IngorFlexiblePresenter extends FlexiblePresenter
 {
     /**
      * Define the presenter values.

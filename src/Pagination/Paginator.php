@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Pagination;
+namespace Ingor\Pagination;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;

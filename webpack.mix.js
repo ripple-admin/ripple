@@ -4,11 +4,11 @@ const path = require('path')
 
 mix.setPublicPath('public')
   .js('resources/js/main.js', 'public/js')
-  .js('resources/js/ripple-admin.js', 'public/js')
+  .js('resources/js/ingor-admin.js', 'public/js')
   .vue()
   .webpackConfig({
     output: {
-      publicPath: '/vendor/ripple-admin/',
+      publicPath: '/vendor/ingor-admin/',
       chunkFilename: 'js/[name].js?id=[chunkhash]'
     },
     resolve: {
@@ -22,13 +22,13 @@ mix.setPublicPath('public')
   .sourceMaps()
 
 // Auto copy assets to test Laravel project
-fs.access('../ripple-test', error => {
+fs.access('../ingor-test', error => {
   if (!error) {
     mix.then(() => {
       // Run Laravel Mix copy file method
       new (require('laravel-mix/src/tasks/CopyFilesTask'))({
         from: 'public',
-        to: new (require('laravel-mix/src/File'))('../ripple-test/public/vendor/ripple-admin')
+        to: new (require('laravel-mix/src/File'))('../ingor-test/public/vendor/ingor-admin')
       }).run()
     })
   }

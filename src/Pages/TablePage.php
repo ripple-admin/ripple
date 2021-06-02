@@ -1,9 +1,9 @@
 <?php
 
-namespace RippleAdmin\Pages;
+namespace Ingor\Pages;
 
-use RippleAdmin\Components\Table;
-use RippleAdmin\Page;
+use Ingor\Components\Table;
+use Ingor\Page;
 
 class TablePage extends Page
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Fields\Concerns;
+namespace Ingor\Fields\Concerns;
 
 trait DisplayableField
 {
@@ -29,7 +29,7 @@ trait DisplayableField
      *
      * @param  mixed  $value
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string|\RippleAdmin\Component
+     * @return string|\Ingor\Component
      */
     public function callRenderDisplayable($value, Model $model)
     {

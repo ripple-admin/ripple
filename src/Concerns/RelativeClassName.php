@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Concerns;
+namespace Ingor\Concerns;
 
 trait RelativeClassName
 {

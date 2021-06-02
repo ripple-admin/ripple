@@ -1,8 +1,8 @@
 <?php
 
-namespace RippleAdmin\Components;
+namespace Ingor\Components;
 
-use RippleAdmin\Component;
+use Ingor\Component;
 
 class Detail extends Component
 {

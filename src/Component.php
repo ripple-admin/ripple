@@ -1,10 +1,10 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use JsonSerializable;
-use RippleAdmin\Components\AbstractComponent;
-use RippleAdmin\Contracts\InertiaRenderable;
+use Ingor\Components\AbstractComponent;
+use Ingor\Contracts\InertiaRenderable;
 
 abstract class Component extends AbstractComponent implements JsonSerializable, InertiaRenderable
 {

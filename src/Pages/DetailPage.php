@@ -1,9 +1,9 @@
 <?php
 
-namespace RippleAdmin\Pages;
+namespace Ingor\Pages;
 
-use RippleAdmin\Components\Detail;
-use RippleAdmin\Page;
+use Ingor\Components\Detail;
+use Ingor\Page;
 
 class DetailPage extends Page
 {

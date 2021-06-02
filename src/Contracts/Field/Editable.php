@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Contracts\Field;
+namespace Ingor\Contracts\Field;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ interface Editable
      *
      * @param  mixed  $value
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string|\RippleAdmin\Component
+     * @return string|\Ingor\Component
      */
     public function renderEditable($value, Model $model);
 }

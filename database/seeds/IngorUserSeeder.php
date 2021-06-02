@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use RippleAdmin\Models\User;
+use Ingor\Models\User;
 
-class RippleUserSeeder extends Seeder
+class IngorUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.

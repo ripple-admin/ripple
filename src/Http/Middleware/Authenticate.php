@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Http\Middleware;
+namespace Ingor\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
@@ -20,7 +20,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $this->authenticate($request, [
-            config('ripple.auth.guard'),
+            config('ingor.auth.guard'),
         ]);
 
         return $next($request);
@@ -35,7 +35,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('ripple.login');
+            return route('ingor.login');
         }
     }
 }

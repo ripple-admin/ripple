@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Http\Controllers;
+namespace Ingor\Http\Controllers;
 
 use Inertia\Inertia;
 

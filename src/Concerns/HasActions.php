@@ -1,8 +1,8 @@
 <?php
 
-namespace RippleAdmin\Concerns;
+namespace Ingor\Concerns;
 
-use RippleAdmin\Droplet;
+use Ingor\Droplet;
 
 trait HasActions
 {
@@ -11,11 +11,11 @@ trait HasActions
      *
      * @param  string  $action
      * @param  array  $parameters
-     * @return \RippleAdmin\Action
+     * @return \Ingor\Action
      */
     public function action(string $action, array $parameters = [])
     {
-        /** @var \RippleAdmin\Action $action */
+        /** @var \Ingor\Action $action */
         $action = app($action, $parameters);
 
         if ($this instanceof Droplet) {

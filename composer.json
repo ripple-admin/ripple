@@ -1,5 +1,5 @@
 {
-    "name": "rippleadmin/ripple",
+    "name": "ingor/ingor",
     "description": "Quick and easy to customize admin panel for Laravel.",
     "type": "library",
     "license": "MIT",
@@ -15,7 +15,7 @@
         "customize",
         "generator"
     ],
-    "homepage": "https://github.com/rippleadmin/ripple",
+    "homepage": "https://github.com/ingorlabs/ingor",
     "require": {
         "php": "^7.2.5|^8.0",
         "additionapps/flexible-presenter": "^2.0",
@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RippleAdmin\\": "src"
+            "Ingor\\": "src"
         },
         "classmap": [
             "database/seeds",
@@ -45,16 +45,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "RippleAdmin\\Test\\": "tests"
+            "Ingor\\Test\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RippleAdmin\\RippleServiceProvider"
+                "Ingor\\IngorServiceProvider"
             ],
             "aliases": {
-                "Ripple": "RippleAdmin\\Ripple"
+                "Ingor": "Ingor\\Ingor"
             }
         }
     },

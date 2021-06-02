@@ -1,25 +1,25 @@
 <?php
 
-namespace RippleAdmin\Fields;
+namespace Ingor\Fields;
 
 use Illuminate\Database\Eloquent\Model;
-use RippleAdmin\Fields\Concerns\DisplayableField;
-use RippleAdmin\Fields\Concerns\EditableField;
-use RippleAdmin\Contracts\Field\Displayable;
-use RippleAdmin\Contracts\Field\Editable;
-use RippleAdmin\Field;
+use Ingor\Fields\Concerns\DisplayableField;
+use Ingor\Fields\Concerns\EditableField;
+use Ingor\Contracts\Field\Displayable;
+use Ingor\Contracts\Field\Editable;
+use Ingor\Field;
 
 class Text extends Field implements Displayable, Editable
 {
-    use DisplayableField,
-        EditableField;
+    use DisplayableField;
+    use EditableField;
 
     /**
      * Render the displayable field component.
      *
      * @param  mixed  $value
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string|\RippleAdmin\Component
+     * @return string|\Ingor\Component
      */
     public function renderDisplayable($value, Model $model)
     {
@@ -31,7 +31,7 @@ class Text extends Field implements Displayable, Editable
      *
      * @param  mixed  $value
      * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return string|\RippleAdmin\Component
+     * @return string|\Ingor\Component
      */
     public function renderEditable($value, Model $model)
     {

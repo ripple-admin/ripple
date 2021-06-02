@@ -14,7 +14,7 @@ export async function firstModule(imports, ...args) {
 }
 
 /**
- * Get the Ripple Admin url.
+ * Get the Ingor url.
  *
  * @param {strng} path
  * @param {object} page

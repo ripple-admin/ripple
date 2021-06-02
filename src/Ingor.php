@@ -1,48 +1,31 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Support\Facades\Route;
 
-class Ripple
+class Ingor
 {
-    /**
-     * The CSS assets include to Ripple Admin.
-     *
-     * @var \RippleAdmin\Asset[]
-     */
+    /** @var \Ingor\Asset[] */
     public static $css = [];
 
-    /**
-     * The JS assets include to Ripple Admin.
-     *
-     * @var \RippleAdmin\Asset[]
-     */
+    /** @var \Ingor\Asset[] */
     public static $js = [];
 
-    /**
-     * The assets for Ripple Admin.
-     *
-     * @var \RippleAdmin\Asset[]
-     */
+    /** @var \Ingor\Asset[] */
     public static $assets = [];
 
-    /**
-     * The Ripple Admin plugin routes path.
-     *
-     * @var array
-     */
     public static $pluginRoutesPath = [];
 
     /**
-     * Define the "ripple" routes for the application.
+     * Define the "ingor" routes for the application.
      *
      * @return void
      */
     public static function routes()
     {
-        Route::namespace('\RippleAdmin\Http\Controllers')
-            ->group(__DIR__.'/../routes/ripple.php');
+        Route::namespace('\Ingor\Http\Controllers')
+            ->group(__DIR__.'/../routes/ingor.php');
 
         foreach (static::$pluginRoutesPath as $path) {
             Route::group([], $path);
@@ -63,7 +46,7 @@ class Ripple
     }
 
     /**
-     * Add the CSS files include to Ripple Admin.
+     * Add the CSS files include to Ingor.
      *
      * @param  string  $path
      * @param  string  $manifestDirectory
@@ -77,7 +60,7 @@ class Ripple
     }
 
     /**
-     * Add the JS files include to Ripple Admin.
+     * Add the JS files include to Ingor.
      *
      * @param  string  $path
      * @param  string  $manifestDirectory
@@ -91,7 +74,7 @@ class Ripple
     }
 
     /**
-     * Add the asset to Ripple Admin.
+     * Add the asset to Ingor.
      *
      * @param  string  $path
      * @param  string  $manifestDirectory
@@ -105,7 +88,7 @@ class Ripple
     }
 
     /**
-     * Get the Ripple Admin styles assets instance.
+     * Get the Ingor styles assets instance.
      *
      * @return array
      */
@@ -115,7 +98,7 @@ class Ripple
     }
 
     /**
-     * Get the Ripple Admin scripts assets instance.
+     * Get the Ingor scripts assets instance.
      *
      * @return array
      */
@@ -125,10 +108,10 @@ class Ripple
     }
 
     /**
-     * Get the Ripple Admin asset instance.
+     * Get the Ingor asset instance.
      *
      * @param  string  $path
-     * @return \RippleAdmin\Asset|null
+     * @return \Ingor\Asset|null
      */
     protected function getAsset(string $path)
     {

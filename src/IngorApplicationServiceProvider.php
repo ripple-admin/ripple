@@ -1,15 +1,15 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use RippleAdmin\Component;
-use RippleAdmin\Http\Middleware\Authenticate;
-use RippleAdmin\Http\Middleware\RedirectIfAuthenticated;
-use RippleAdmin\Routing\Redirector;
+use Ingor\Component;
+use Ingor\Http\Middleware\Authenticate;
+use Ingor\Http\Middleware\RedirectIfAuthenticated;
+use Ingor\Routing\Redirector;
 
-class RippleApplicationServiceProvider extends ServiceProvider
+class IngorApplicationServiceProvider extends ServiceProvider
 {
     public function register()
     {
@@ -27,7 +27,7 @@ class RippleApplicationServiceProvider extends ServiceProvider
 
     protected function registerRedirector()
     {
-        $this->app->singleton('ripple.redirect', function ($app) {
+        $this->app->singleton('ingor.redirect', function ($app) {
             $redirector = new Redirector($app['url']);
 
             if (isset($app['session.store'])) {
@@ -40,46 +40,46 @@ class RippleApplicationServiceProvider extends ServiceProvider
 
     public function registerConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/ripple.php', 'ripple');
+        $this->mergeConfigFrom(__DIR__.'/../config/ingor.php', 'ingor');
 
         // Merge auth guards and auth providers to Laravel config
         $this->app['config']['auth.guards'] = array_merge(
             $this->app['config']['auth.guards'],
-            $this->app['config']['ripple.auth.guards']
+            $this->app['config']['ingor.auth.guards']
         );
         $this->app['config']['auth.providers'] = array_merge(
             $this->app['config']['auth.providers'],
-            $this->app['config']['ripple.auth.providers']
+            $this->app['config']['ingor.auth.providers']
         );
     }
 
     public function addZiggyConfig()
     {
         $this->app['config']['ziggy.blacklist'] = collect($this->app['config']['ziggy.blacklist'])
-            ->concat(['debugbar.*', 'horizon.*', 'ignition.*', 'ripple.*'])
+            ->concat(['debugbar.*', 'horizon.*', 'ignition.*', 'ingor.*'])
             ->unique()
             ->all();
 
-        $this->app['config']['ziggy.groups.ripple'] = ['ripple.*'];
+        $this->app['config']['ziggy.groups.ingor'] = ['ingor.*'];
     }
 
     public function registerClassesNamespacesPrefix()
     {
-        Component::namespace('RippleAdmin\Components');
+        Component::namespace('Ingor\Components');
     }
 
     public function registerMiddlewares()
     {
-        $this->app['router']->aliasMiddleware('ripple.auth', Authenticate::class);
-        $this->app['router']->aliasMiddleware('ripple.guest', RedirectIfAuthenticated::class);
+        $this->app['router']->aliasMiddleware('ingor.auth', Authenticate::class);
+        $this->app['router']->aliasMiddleware('ingor.guest', RedirectIfAuthenticated::class);
     }
 
     public function registerRoutes()
     {
-        Route::domain(config('ripple.domain'))
-            ->prefix(config('ripple.prefix'))
-            ->middleware(config('ripple.middleware'))
-            ->namespace(config('ripple.controller'))
+        Route::domain(config('ingor.domain'))
+            ->prefix(config('ingor.prefix'))
+            ->middleware(config('ingor.middleware'))
+            ->namespace(config('ingor.controller'))
             ->group(base_path('admin/routes.php'));
     }
 }

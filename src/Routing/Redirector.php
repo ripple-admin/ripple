@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Routing;
+namespace Ingor\Routing;
 
 use Illuminate\Routing\Redirector as BaseRedirector;
 
@@ -14,7 +14,7 @@ class Redirector extends BaseRedirector
      */
     public function home($status = 302)
     {
-        return $this->to($this->generator->route('ripple.home'), $status);
+        return $this->to($this->generator->route('ingor.home'), $status);
     }
 
     /**
@@ -28,7 +28,7 @@ class Redirector extends BaseRedirector
      */
     public function intended($default = '/', $status = 302, $headers = [], $secure = null)
     {
-        $path = $this->session->pull('url.ripple.intended', $default);
+        $path = $this->session->pull('url.ingor.intended', $default);
 
         return $this->to($path, $status, $headers, $secure);
     }
@@ -41,6 +41,6 @@ class Redirector extends BaseRedirector
      */
     public function setIntendedUrl($url)
     {
-        $this->session->put('url.ripple.intended', $url);
+        $this->session->put('url.ingor.intended', $url);
     }
 }

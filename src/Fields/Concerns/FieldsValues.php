@@ -1,26 +1,26 @@
 <?php
 
-namespace RippleAdmin\Fields\Concerns;
+namespace Ingor\Fields\Concerns;
 
 use AdditionApps\FlexiblePresenter\FlexiblePresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use RippleAdmin\Field;
-use RippleAdmin\RippleFlexiblePresenter;
+use Ingor\Field;
+use Ingor\IngorFlexiblePresenter;
 
 trait FieldsValues
 {
     /**
      * The droplet fields.
      *
-     * @var \RippleAdmin\Field[]
+     * @var \Ingor\Field[]
      */
     protected $fields = [];
 
     /**
      * Set the droplet fields.
      *
-     * @param  \RippleAdmin\Field[]  $fields
+     * @param  \Ingor\Field[]  $fields
      * @return void
      */
     public function fields(array $fields)
@@ -43,7 +43,7 @@ trait FieldsValues
     /**
      * Get the droplet fields.
      *
-     * @return \RippleAdmin\Field[]
+     * @return \Ingor\Field[]
      */
     public function getFields()
     {
@@ -53,7 +53,7 @@ trait FieldsValues
     /**
      * Get the droplet field.
      *
-     * @return \RippleAdmin\Field|null
+     * @return \Ingor\Field|null
      */
     public function field(string $name)
     {
@@ -128,7 +128,7 @@ trait FieldsValues
      * Add the field before the specified field.
      *
      * @param  string  $baseFieldKey
-     * @param  \RippleAdmin\Field  $field
+     * @param  \Ingor\Field  $field
      * @return $this
      */
     public function before(string $baseFieldKey, Field $field)
@@ -146,7 +146,7 @@ trait FieldsValues
      * Add the field after the specified field.
      *
      * @param  string  $baseFieldKey
-     * @param  \RippleAdmin\Field  $field
+     * @param  \Ingor\Field  $field
      * @return $this
      */
     public function after(string $baseFieldKey, Field $field)
@@ -163,14 +163,14 @@ trait FieldsValues
     /**
      * Get a dictionary keyed by primary keys.
      *
-     * @param  \RippleAdmin\Field[]  $items
+     * @param  \Ingor\Field[]  $items
      * @return array
      */
     public function getFieldsDictionary($fields)
     {
         $dictionary = [];
 
-        /** @var \RippleAdmin\Field $field */
+        /** @var \Ingor\Field $field */
         foreach ($fields as $field) {
             $dictionary[$field->key()] = $field;
         }
@@ -188,7 +188,7 @@ trait FieldsValues
     public function transformResource($data, callable $callback)
     {
         return $this->transformFields(
-            RippleFlexiblePresenter::make($data), $callback
+            IngorFlexiblePresenter::make($data), $callback
         );
     }
 
@@ -202,7 +202,7 @@ trait FieldsValues
     public function transformCollection($data, callable $callback)
     {
         return $this->transformFields(
-            RippleFlexiblePresenter::collection($data), $callback
+            IngorFlexiblePresenter::collection($data), $callback
         );
     }
 

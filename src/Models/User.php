@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Models;
+namespace Ingor\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,7 +14,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'ripple_users';
+    protected $table = 'ingor_users';
 
     /**
      * The attributes that are mass assignable.

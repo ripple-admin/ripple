@@ -1,8 +1,8 @@
 <?php
 
-namespace RippleAdmin\Concerns;
+namespace Ingor\Concerns;
 
-use RippleAdmin\Droplet;
+use Ingor\Droplet;
 
 trait HasPages
 {
@@ -11,11 +11,11 @@ trait HasPages
      *
      * @param  string  $page
      * @param  array  $parameters
-     * @return \RippleAdmin\Page
+     * @return \Ingor\Page
      */
     public function page(string $page, array $parameters = [])
     {
-        /** @var \RippleAdmin\Page $page */
+        /** @var \Ingor\Page $page */
         $page = app($page, $parameters);
 
         if ($this instanceof Droplet) {

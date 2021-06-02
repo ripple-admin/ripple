@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Http\Middleware;
+namespace Ingor\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +16,8 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard('ripple')->check()) {
-            return redirect(route('ripple.home'));
+        if (Auth::guard('ingor')->check()) {
+            return redirect(route('ingor.home'));
         }
 
         return $next($request);

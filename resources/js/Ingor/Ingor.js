@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import { firstModule, adminUrl } from './util'
 
-export default class Ripple {
+export default class Ingor {
   constructor() {
     this.pagesCallable = []
   }

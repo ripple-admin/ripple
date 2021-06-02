@@ -1,22 +1,22 @@
 <?php
 
-namespace RippleAdmin\Concerns;
+namespace Ingor\Concerns;
 
-use RippleAdmin\Water;
+use Ingor\Water;
 
 trait HasWater
 {
     /**
      * The water model instance.
      *
-     * @var \RippleAdmin\Water
+     * @var \Ingor\Water
      */
     protected $water;
 
     /**
      * Get the water model instance.
      *
-     * @return \RippleAdmin\Water
+     * @return \Ingor\Water
      */
     public function water()
     {
@@ -26,7 +26,7 @@ trait HasWater
     /**
      * Set the water model instance.
      *
-     * @param  \RippleAdmin\Water  $water
+     * @param  \Ingor\Water  $water
      * @return $this
      */
     public function setWater(Water $water)

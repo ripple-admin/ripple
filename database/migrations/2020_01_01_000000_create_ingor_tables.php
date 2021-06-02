@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRippleAdminTables extends Migration
+class CreateIngorTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRippleAdminTables extends Migration
      */
     public function up()
     {
-        Schema::create('ripple_users', function (Blueprint $table) {
+        Schema::create('ingor_users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('username')->unique();

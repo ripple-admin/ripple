@@ -1,16 +1,16 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Contracts\Debug\ExceptionHandler as ExceptionHandlerContract;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use RippleAdmin\Exceptions\Handler as ExceptionHandler;
-use RippleAdmin\Pagination\Paginator;
-use RippleAdmin\Routing\RippleRouteMethods;
+use Ingor\Exceptions\Handler as ExceptionHandler;
+use Ingor\Pagination\Paginator;
+use Ingor\Routing\IngorRouteMethods;
 
-class RippleServiceProvider extends ServiceProvider
+class IngorServiceProvider extends ServiceProvider
 {
     public function register()
     {
@@ -39,12 +39,12 @@ class RippleServiceProvider extends ServiceProvider
 
     public function registerRouteMixin()
     {
-        Route::mixin(new RippleRouteMethods);
+        Route::mixin(new IngorRouteMethods);
     }
 
     public function registerViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ripple-admin');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ingor-admin');
     }
 
     public function registerMigrations()
@@ -60,11 +60,11 @@ class RippleServiceProvider extends ServiceProvider
     public function publishFiles()
     {
         $this->publishes([
-            __DIR__.'/../config/ripple.php' => config_path('ripple.php'),
-        ], 'ripple-admin-config');
+            __DIR__.'/../config/ingor.php' => config_path('ingor.php'),
+        ], 'ingor-admin-config');
 
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'ripple-admin-migrations');
+        ], 'ingor-admin-migrations');
     }
 }

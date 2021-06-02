@@ -1,22 +1,22 @@
 <?php
 
-namespace RippleAdmin\Concerns;
+namespace Ingor\Concerns;
 
-use RippleAdmin\Droplet;
+use Ingor\Droplet;
 
 trait HasDroplet
 {
     /**
      * The droplet instance.
      *
-     * @var \RippleAdmin\Droplet
+     * @var \Ingor\Droplet
      */
     protected $droplet;
 
     /**
      * Get the droplet instance.
      *
-     * @return \RippleAdmin\Droplet
+     * @return \Ingor\Droplet
      */
     public function droplet()
     {
@@ -26,7 +26,7 @@ trait HasDroplet
     /**
      * Set the droplet instance.
      *
-     * @param  \RippleAdmin\Droplet  $droplet
+     * @param  \Ingor\Droplet  $droplet
      * @return $this
      */
     public function setDroplet(Droplet $droplet)

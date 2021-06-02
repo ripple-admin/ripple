@@ -1,14 +1,14 @@
 <?php
 
-namespace RippleAdmin\Components;
+namespace Ingor\Components;
 
 use Illuminate\Support\Traits\Macroable;
-use RippleAdmin\Concerns\RelativeClassName;
+use Ingor\Concerns\RelativeClassName;
 
 abstract class AbstractComponent
 {
-    use Macroable,
-        RelativeClassName;
+    use Macroable;
+    use RelativeClassName;
 
     /**
      * The component name.

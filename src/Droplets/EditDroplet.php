@@ -1,10 +1,10 @@
 <?php
 
-namespace RippleAdmin\Droplets;
+namespace Ingor\Droplets;
 
 use Illuminate\Routing\Router;
-use RippleAdmin\Droplet;
-use RippleAdmin\Pages\TablePage;
+use Ingor\Droplet;
+use Ingor\Pages\TablePage;
 
 class EditDroplet extends Droplet
 {

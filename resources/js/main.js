@@ -1,1 +1,1 @@
-Ripple.components(() => require.context('./Components', true, /\.(js|vue)$/i))
+Ingor.components(() => require.context('./Components', true, /\.(js|vue)$/i))

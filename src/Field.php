@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;

@@ -1,6 +1,6 @@
 <?php
 
-namespace RippleAdmin\Exceptions;
+namespace Ingor\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -65,6 +65,6 @@ class Handler extends ExceptionHandler
     {
         return $request->expectsJson()
                     ? response()->json(['message' => $exception->getMessage()], 401)
-                    : ripple_redirect()->guest($exception->redirectTo() ?? route('ripple.login'));
+                    : ingor_redirect()->guest($exception->redirectTo() ?? route('ingor.login'));
     }
 }

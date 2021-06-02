@@ -1,12 +1,12 @@
 <?php
 
-namespace RippleAdmin\Auth;
+namespace Ingor\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers as BaseAuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use RippleAdmin\Cache\RateLimiter;
+use Ingor\Cache\RateLimiter;
 
 trait AuthenticatesUsers
 {
@@ -50,7 +50,7 @@ trait AuthenticatesUsers
     /**
      * Get the rate limiter instance.
      *
-     * @return \RippleAdmin\Cache\RateLimiter
+     * @return \Ingor\Cache\RateLimiter
      */
     protected function limiter()
     {
@@ -64,7 +64,7 @@ trait AuthenticatesUsers
      */
     protected function guard()
     {
-        return Auth::guard('ripple');
+        return Auth::guard('ingor');
     }
 }
 

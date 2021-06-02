@@ -1,11 +1,11 @@
 <?php
 
-namespace RippleAdmin\Http\Controllers\Auth;
+namespace Ingor\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
-use RippleAdmin\Auth\AuthenticatesUsers;
-use RippleAdmin\Cache\RateLimiter;
-use RippleAdmin\Http\Controllers\Controller;
+use Ingor\Auth\AuthenticatesUsers;
+use Ingor\Cache\RateLimiter;
+use Ingor\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
@@ -28,7 +28,7 @@ class LoginController extends Controller
     /**
      * Get the rate limiter instance.
      *
-     * @return \RippleAdmin\Cache\RateLimiter
+     * @return \Ingor\Cache\RateLimiter
      */
     protected function limiter()
     {
@@ -57,7 +57,7 @@ class LoginController extends Controller
      */
     public function redirectTo()
     {
-        return route('ripple.home');
+        return route('ingor.home');
     }
 
     /**
@@ -67,6 +67,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('ripple.guest')->except('logout');
+        $this->middleware('ingor.guest')->except('logout');
     }
 }

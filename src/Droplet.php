@@ -1,24 +1,24 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
-use RippleAdmin\Concerns\HasActions;
-use RippleAdmin\Concerns\HasPages;
-use RippleAdmin\Concerns\HasWater;
-use RippleAdmin\Contracts\Field\Displayable;
-use RippleAdmin\Fields\Concerns\FieldsValues;
+use Ingor\Concerns\HasActions;
+use Ingor\Concerns\HasPages;
+use Ingor\Concerns\HasWater;
+use Ingor\Contracts\Field\Displayable;
+use Ingor\Fields\Concerns\FieldsValues;
 
 abstract class Droplet
 {
-    use Macroable,
-        HasWater,
-        HasPages,
-        HasActions,
-        FieldsValues;
+    use Macroable;
+    use HasWater;
+    use HasPages;
+    use HasActions;
+    use FieldsValues;
 
     /**
      * Allows export methods of droplets.
@@ -116,7 +116,7 @@ abstract class Droplet
     /**
      * Get the auto eager load relationships.
      *
-     * @return \RippleAdmin\Field[]
+     * @return \Ingor\Field[]
      */
     public function eagerLoadFields()
     {

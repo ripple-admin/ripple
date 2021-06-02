@@ -1,24 +1,24 @@
 <?php
 
-namespace RippleAdmin;
+namespace Ingor;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Traits\Macroable;
 use ReflectionClass;
 use ReflectionMethod;
-use RippleAdmin\Concerns\HasActions;
-use RippleAdmin\Concerns\HasPages;
-use RippleAdmin\Droplets\CreateDroplet;
-use RippleAdmin\Droplets\DestroyDroplet;
-use RippleAdmin\Droplets\EditDroplet;
-use RippleAdmin\Droplets\IndexDroplet;
-use RippleAdmin\Droplets\ShowDroplet;
+use Ingor\Concerns\HasActions;
+use Ingor\Concerns\HasPages;
+use Ingor\Droplets\CreateDroplet;
+use Ingor\Droplets\DestroyDroplet;
+use Ingor\Droplets\EditDroplet;
+use Ingor\Droplets\IndexDroplet;
+use Ingor\Droplets\ShowDroplet;
 
 abstract class Water
 {
-    use Macroable,
-        HasPages,
-        HasActions;
+    use Macroable;
+    use HasPages;
+    use HasActions;
 
     /**
      * The original model class.
@@ -37,7 +37,7 @@ abstract class Water
     /**
      * The droplets instance.
      *
-     * @var string[]|\RippleAdmin\Droplet[]
+     * @var string[]|\Ingor\Droplet[]
      */
     protected $droplets = [
         'index' => IndexDroplet::class,
@@ -56,7 +56,7 @@ abstract class Water
     /**
      * Define the water model fields.
      *
-     * @return \RippleAdmin\Field[]
+     * @return \Ingor\Field[]
      */
     abstract public function fields(): array;
 
@@ -92,7 +92,7 @@ abstract class Water
     public function bootDroplets()
     {
         foreach ($this->droplets as $name => $droplet) {
-            /** @var \RippleAdmin\Droplet $droplet */
+            /** @var \Ingor\Droplet $droplet */
             $droplet = new $droplet($this);
             $droplet->fields($this->fields());
 
@@ -105,7 +105,7 @@ abstract class Water
     /**
      * Get all droplets instance.
      *
-     * @return \RippleAdmin\Droplet[]
+     * @return \Ingor\Droplet[]
      */
     public function droplets(): array
     {
@@ -116,7 +116,7 @@ abstract class Water
      * Get the droplet instance.
      *
      * @param  string  $name
-     * @return \RippleAdmin\Droplet
+     * @return \Ingor\Droplet
      */
     public function droplet(string $name)
     {
@@ -127,7 +127,7 @@ abstract class Water
      * Add a new droplet instance.
      *
      * @param  string  $name
-     * @param  \RippleAdmin\Droplet  $droplet
+     * @param  \Ingor\Droplet  $droplet
      * @return $this
      */
     public function addDroplet(string $name, Droplet $droplet)
@@ -140,7 +140,7 @@ abstract class Water
     /**
      * Mix droplet instance into the water model.
      *
-     * @param  \RippleAdmin\Droplet  $droplet
+     * @param  \Ingor\Droplet  $droplet
      * @param  bool  $replace
      * @return void
      */
