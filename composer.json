@@ -1,6 +1,6 @@
 {
     "name": "ingor/ingor",
-    "description": "Quick and easy to customize admin panel for Laravel.",
+    "description": "Easy to customize admin panel with Inertia.js, Laravel and Vue.js..",
     "type": "library",
     "license": "MIT",
     "authors": [

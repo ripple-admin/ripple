@@ -6,7 +6,7 @@
 [![Style CI Build Status][ico-style-ci]][link-style-ci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-Quick and easy to customize admin panel for Laravel with Inertia.js & Vue.js.
+Easy to customize admin panel with Inertia.js, Laravel and Vue.js.
 
 [ico-version]: https://img.shields.io/packagist/v/ingor/ingor?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square
