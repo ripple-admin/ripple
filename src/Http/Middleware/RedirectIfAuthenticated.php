@@ -3,6 +3,7 @@
 namespace Ingor\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
@@ -14,10 +15,15 @@ class RedirectIfAuthenticated
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$guards)
     {
-        if (Auth::guard('ingor')->check()) {
-            return redirect(route('ingor.home'));
+        $guards = ['ingor'];
+        // $guards = empty($guards) ? [null] : $guards;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                return redirect(route('ingor.home'));
+            }
         }
 
         return $next($request);
