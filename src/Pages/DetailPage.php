@@ -13,12 +13,12 @@ class DetailPage extends Page
 
     public function fields()
     {
-        return $this->droplet->getFieldsLabel();
+        return $this->drop->getFieldsLabel();
     }
 
     public function data()
     {
-        return $this->droplet->buildModelData();
+        return $this->drop->buildModelData();
     }
 
     protected function pageProps(): array

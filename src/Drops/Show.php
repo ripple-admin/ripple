@@ -1,11 +1,11 @@
 <?php
 
-namespace Ingor\Droplets;
+namespace Ingor\Drops;
 
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Pages\DetailPage;
 
-class ShowDroplet extends Droplet
+class Show extends Drop
 {
     public $methods = [
         'show',

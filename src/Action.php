@@ -5,7 +5,7 @@ namespace Ingor;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Macroable;
-use Ingor\Concerns\HasDroplet;
+use Ingor\Concerns\HasDrop;
 use Ingor\Concerns\HasRoute;
 use Ingor\Concerns\HasWater;
 use Ingor\Contracts\Molecule;
@@ -16,7 +16,7 @@ abstract class Action implements Molecule, Responsable
     use Macroable;
     use AsAction;
     use HasWater;
-    use HasDroplet;
+    use HasDrop;
     use HasRoute;
 
     /**

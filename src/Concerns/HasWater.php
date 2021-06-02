@@ -20,7 +20,7 @@ trait HasWater
      */
     public function water()
     {
-        return $this->water ?? $this->droplet->water();
+        return $this->water ?? $this->drop->water();
     }
 
     /**

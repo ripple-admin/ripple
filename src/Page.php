@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Traits\Macroable;
 use Inertia\Inertia;
 use Ingor\AbstractComponent;
-use Ingor\Concerns\HasDroplet;
+use Ingor\Concerns\HasDrop;
 use Ingor\Concerns\HasRoute;
 use Ingor\Concerns\HasWater;
 use Ingor\Contracts\Molecule;
@@ -16,7 +16,7 @@ abstract class Page extends AbstractComponent implements Molecule, Responsable
 {
     use Macroable;
     use HasWater;
-    use HasDroplet;
+    use HasDrop;
     use HasRoute;
 
     /**
@@ -86,7 +86,7 @@ abstract class Page extends AbstractComponent implements Molecule, Responsable
      */
     public function getFields()
     {
-        return $this->droplet->getFields();
+        return $this->drop->getFields();
     }
 
     /**

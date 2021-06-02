@@ -1,12 +1,12 @@
 <?php
 
-namespace Ingor\Droplets;
+namespace Ingor\Drops;
 
 use Ingor\Actions\StoreResource;
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Pages\MyPage;
 
-class CreateDroplet extends Droplet
+class Create extends Drop
 {
     protected $molecules = [
         'create' => ['get',  '/create', MyPage::class],

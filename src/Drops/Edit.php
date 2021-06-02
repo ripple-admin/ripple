@@ -1,12 +1,12 @@
 <?php
 
-namespace Ingor\Droplets;
+namespace Ingor\Drops;
 
 use Illuminate\Routing\Router;
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Pages\TablePage;
 
-class EditDroplet extends Droplet
+class Edit extends Drop
 {
     public $methods = [
         'edit',

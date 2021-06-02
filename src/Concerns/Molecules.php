@@ -3,7 +3,7 @@
 namespace Ingor\Concerns;
 
 use Ingor\Contracts\Molecule;
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Water;
 
 trait Molecules
@@ -69,7 +69,7 @@ trait Molecules
 
         /** @var \Ingor\Contracts\Molecule $molecule */
         if ($this instanceof Water)   $molecule->setWater($this);
-        if ($this instanceof Droplet) $molecule->setDroplet($this);
+        if ($this instanceof Drop) $molecule->setDrop($this);
 
         return $this->loadedMolecules[$name] = $molecule;
     }

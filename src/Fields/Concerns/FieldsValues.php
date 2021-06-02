@@ -11,14 +11,14 @@ use Ingor\IngorFlexiblePresenter;
 trait FieldsValues
 {
     /**
-     * The droplet fields.
+     * The drop fields.
      *
      * @var \Ingor\Field[]
      */
     protected $fields = [];
 
     /**
-     * Set the droplet fields.
+     * Set the drop fields.
      *
      * @param  \Ingor\Field[]  $fields
      * @return void
@@ -41,7 +41,7 @@ trait FieldsValues
     }
 
     /**
-     * Get the droplet fields.
+     * Get the drop fields.
      *
      * @return \Ingor\Field[]
      */
@@ -51,7 +51,7 @@ trait FieldsValues
     }
 
     /**
-     * Get the droplet field.
+     * Get the drop field.
      *
      * @return \Ingor\Field|null
      */

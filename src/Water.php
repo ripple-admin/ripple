@@ -6,11 +6,11 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Macroable;
 use Ingor\Concerns\Molecules;
-use Ingor\Droplets\CreateDroplet;
-use Ingor\Droplets\DestroyDroplet;
-use Ingor\Droplets\EditDroplet;
-use Ingor\Droplets\IndexDroplet;
-use Ingor\Droplets\ShowDroplet;
+use Ingor\Drops\Create;
+use Ingor\Drops\Destroy;
+use Ingor\Drops\Edit;
+use Ingor\Drops\Index;
+use Ingor\Drops\Show;
 
 abstract class Water extends SourceWater
 {
@@ -40,24 +40,24 @@ abstract class Water extends SourceWater
     protected $modelInstance;
 
     /**
-     * Define the droplets of water.
+     * Define the drops of water.
      *
      * @var array
      */
-    protected $droplets = [
-        IndexDroplet::class,
-        CreateDroplet::class,
-        // ShowDroplet::class,
-        // EditDroplet::class,
-        // DestroyDroplet::class,
+    protected $drops = [
+        Index::class,
+        Create::class,
+        // Show::class,
+        // Edit::class,
+        // Destroy::class,
     ];
 
     /**
-     * The droplets instance.
+     * The drops instance.
      *
      * @var array
      */
-    protected $loadedDroplets = [];
+    protected $loadedDrops = [];
 
     public function __construct()
     {
@@ -72,7 +72,7 @@ abstract class Water extends SourceWater
      */
     public function boot()
     {
-        $this->bootDroplets();
+        $this->bootDrops();
     }
 
     /**
@@ -97,52 +97,52 @@ abstract class Water extends SourceWater
     abstract public function fields(): array;
 
     /**
-     * Bootstrap all droplets instance.
+     * Bootstrap all drops instance.
      *
      * @return void
      */
-    public function bootDroplets()
+    public function bootDrops()
     {
-        foreach ($this->droplets as $className) {
-            /** @var \Ingor\Droplet $droplet */
-            $droplet = new $className($this);
-            $droplet->fields($this->fields());
+        foreach ($this->drops as $className) {
+            /** @var \Ingor\Drop $drop */
+            $drop = new $className($this);
+            $drop->fields($this->fields());
 
-            $this->addDroplet($droplet);
+            $this->addDrop($drop);
         }
     }
 
     /**
-     * Get all droplets instance.
+     * Get all drops instance.
      *
-     * @return \Ingor\Droplet[]
+     * @return \Ingor\Drop[]
      */
-    public function droplets(): array
+    public function drops(): array
     {
-        return $this->droplets;
+        return $this->drops;
     }
 
     /**
-     * Get the droplet instance.
+     * Get the drop instance.
      *
      * @param  string  $name
-     * @return \Ingor\Droplet
+     * @return \Ingor\Drop
      */
-    public function droplet(string $name)
+    public function drop(string $name)
     {
-        return $this->droplets[$name];
+        return $this->drops[$name];
     }
 
     /**
-     * Add a new droplet instance.
+     * Add a new drop instance.
      *
-     * @param  \Ingor\Droplet  $droplet
+     * @param  \Ingor\Drop  $drop
      * @return $this
      */
-    public function addDroplet(Droplet $droplet)
+    public function addDrop(Drop $drop)
     {
-        $this->loadedDroplets[get_class($droplet)] = $droplet;
-        $this->mergeMolecules($droplet);
+        $this->loadedDrops[get_class($drop)] = $drop;
+        $this->mergeMolecules($drop);
 
         return $this;
     }
@@ -171,7 +171,7 @@ abstract class Water extends SourceWater
     {
         $router->prefix($this->prefix())->group(function ($router) {
             $this->registerMoleculesRoutes($router);
-            $this->registerDropletsRoutes($router);
+            $this->registerDropsRoutes($router);
             $this->routes($router);
         });
     }
@@ -191,16 +191,16 @@ abstract class Water extends SourceWater
     }
 
     /**
-     * Register the droplets routes.
+     * Register the drops routes.
      *
      * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void
      */
-    protected function registerDropletsRoutes($router)
+    protected function registerDropsRoutes($router)
     {
-        /** @var \Ingor\Droplet $droplet */
-        foreach ($this->loadedDroplets as $className => $droplet) {
-            $droplet->routes($router);
+        /** @var \Ingor\Drop $drop */
+        foreach ($this->loadedDrops as $className => $drop) {
+            $drop->routes($router);
         }
     }
 

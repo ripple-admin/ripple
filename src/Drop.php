@@ -10,7 +10,7 @@ use Ingor\Concerns\Molecules;
 use Ingor\Contracts\Field\Displayable;
 use Ingor\Fields\Concerns\FieldsValues;
 
-abstract class Droplet extends SourceWater
+abstract class Drop extends SourceWater
 {
     use Macroable;
     use HasWater;
@@ -33,7 +33,7 @@ abstract class Droplet extends SourceWater
     }
 
     /**
-     * Define the routes of the droplet.
+     * Define the routes of the drop.
      *
      * @param  \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar  $router
      * @return void

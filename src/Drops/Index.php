@@ -1,11 +1,11 @@
 <?php
 
-namespace Ingor\Droplets;
+namespace Ingor\Drops;
 
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Pages\TablePage;
 
-class IndexDroplet extends Droplet
+class Index extends Drop
 {
     protected $molecules = [
         'index' => ['get', '/', TablePage::class],

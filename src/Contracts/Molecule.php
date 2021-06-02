@@ -2,7 +2,7 @@
 
 namespace Ingor\Contracts;
 
-use Ingor\Droplet;
+use Ingor\Drop;
 use Ingor\Water;
 
 interface Molecule
@@ -23,19 +23,19 @@ interface Molecule
     public function setWater(Water $water);
 
     /**
-     * Get the droplet instance.
+     * Get the drop instance.
      *
-     * @return \Ingor\Droplet
+     * @return \Ingor\Drop
      */
-    public function droplet();
+    public function drop();
 
     /**
-     * Set the droplet instance.
+     * Set the drop instance.
      *
-     * @param  \Ingor\Droplet  $droplet
+     * @param  \Ingor\Drop  $drop
      * @return $this
      */
-    public function setDroplet(Droplet $droplet);
+    public function setDrop(Drop $drop);
 
     /**
      * Define the routes of the molecule.
